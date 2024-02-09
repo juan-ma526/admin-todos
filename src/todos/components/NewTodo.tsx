@@ -3,26 +3,27 @@
 import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 
-import * as todosApi from "@/todos/helpers/todos";
+//import * as todosApi from "@/todos/helpers/todos";
 import { useRouter } from "next/navigation";
+import { addTodo, deleteTodo } from "../actions/todo-actions";
 
 export const NewTodo = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [description, setDescription] = useState("");
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (description.trim().length === 0) return;
 
-    todosApi.createTodo(description);
-    setDescription("");
-    router.refresh();
+    addTodo(description);
+    await setDescription("");
   };
 
-  const deleteCompleted = async () => {
+  /* const deleteCompleted = async () => {
+    
     await todosApi.deleteCompletedTodos();
-    router.refresh();
-  };
+     router.refresh();
+  }; */
 
   return (
     <form onSubmit={onSubmit} className="flex w-full">
@@ -44,7 +45,7 @@ export const NewTodo = () => {
       <span className="flex flex-1"></span>
 
       <button
-        onClick={() => deleteCompleted()}
+        onClick={() => deleteTodo()}
         type="button"
         className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all"
       >

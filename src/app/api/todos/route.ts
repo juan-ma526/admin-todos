@@ -1,5 +1,5 @@
 import prisma from "@/app/lib/prisma";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import * as yup from "yup";
 
 export async function GET(request: Request) {
@@ -8,17 +8,11 @@ export async function GET(request: Request) {
   const skip = Number(searchParams.get("skip") ?? "0");
 
   if (isNaN(take)) {
-    return NextResponse.json(
-      { message: "Take debe ser un numero" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Take debe ser un numero" }, { status: 400 });
   }
 
   if (isNaN(skip)) {
-    return NextResponse.json(
-      { message: "Skip debe ser un numero" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Skip debe ser un numero" }, { status: 400 });
   }
 
   const todos = await prisma.todo.findMany({
