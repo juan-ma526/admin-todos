@@ -2,11 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import { SidebarItem } from ".";
-import {
-  IoCalendarOutline,
-  IoCheckboxOutline,
-  IoListOutline,
-} from "react-icons/io5";
+import { IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOutline, IoListOutline } from "react-icons/io5";
 
 const menuItems = [
   {
@@ -23,6 +19,11 @@ const menuItems = [
     icon: <IoListOutline />,
     title: "Server Actions",
     path: "/dashboard/server-todos",
+  },
+  {
+    icon: <IoCodeWorkingOutline />,
+    title: "Cookies",
+    path: "/dashboard/cookies",
   },
 ];
 
@@ -54,20 +55,13 @@ export const Sidebar = () => {
             width={150}
             height={150}
           />
-          <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-            Cynthia J. Watts
-          </h5>
+          <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Cynthia J. Watts</h5>
           <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
           {menuItems.map((item) => (
-            <SidebarItem
-              key={item.title}
-              icon={item.icon}
-              path={item.path}
-              title={item.title}
-            />
+            <SidebarItem key={item.title} icon={item.icon} path={item.path} title={item.title} />
           ))}
         </ul>
       </div>
