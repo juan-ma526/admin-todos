@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
-import { SidebarItem } from ".";
+import { LogOutButton, SidebarItem } from "..";
 import {
   IoBasketOutline,
   IoCalendarOutline,
   IoCheckboxOutline,
   IoCodeWorkingOutline,
   IoListOutline,
+  IoPerson,
 } from "react-icons/io5";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -38,6 +39,11 @@ const menuItems = [
     title: "Productos",
     path: "/dashboard/products",
   },
+  {
+    icon: <IoPerson />,
+    title: "Perfil",
+    path: "/dashboard/profile",
+  },
 ];
 
 export const Sidebar = async () => {
@@ -64,7 +70,11 @@ export const Sidebar = async () => {
         <div className="mt-8 text-center">
           {/* Next/Image */}
           <Image
-            src={`${sessions?.user ? sessions?.user?.image : ""}  `}
+            src={`${
+              sessions?.user
+                ? sessions?.user?.image
+                : "https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
+            }  `}
             alt="Imagen de avatar"
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             width={150}
@@ -82,10 +92,7 @@ export const Sidebar = async () => {
       </div>
 
       <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-          <CiLogout />
-          <span className="group-hover:text-gray-700">Logout</span>
-        </button>
+        <LogOutButton />
       </div>
     </aside>
   );
