@@ -7,6 +7,7 @@ const getTotalCount = (cart: { [id: string]: number }): number => {
   Object.values(cart).forEach((value) => {
     items += value as number;
   });
+
   return items;
 };
 

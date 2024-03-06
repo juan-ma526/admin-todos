@@ -6,10 +6,6 @@ import { useEffect } from "react";
 export default function ProfilePage() {
   const { data: session } = useSession();
 
-  useEffect(() => {
-    console.log("client side");
-  }, []);
-
   return (
     <div>
       <h1>ProfilePage</h1>
